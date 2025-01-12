@@ -1,9 +1,12 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Progress from "./ProgressBar";
 
 export default function DeleteConfirmation({ onConfirm, onCancel }) {
   useEffect(() => {
+    console.log("Modal removing timer set.");
     const timer = setTimeout(() => {
       console.log("Timer set");
+      console.log("Modal removed.");
       onConfirm();
     }, 3000);
 
@@ -11,7 +14,7 @@ export default function DeleteConfirmation({ onConfirm, onCancel }) {
       clearTimeout(timer);
       console.log("Timer removed");
     };
-  });
+  }, [onConfirm]);
   return (
     <div id="delete-confirmation">
       <h2>Are you sure?</h2>
@@ -24,6 +27,7 @@ export default function DeleteConfirmation({ onConfirm, onCancel }) {
           Yes
         </button>
       </div>
+      <Progress />
     </div>
   );
 }
